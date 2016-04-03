@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <script src="qr-script.js"></script>
 
 <dom-module id="qr-code">
-
+    
 </dom-module>
 
 <script>
@@ -25,6 +25,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         type: String,
         value: 'http://www.jukebox.one',
         observer: 'generate'
+      },
+      revealurl: {
+        type: Boolean,
+        value: true
       }
     },
 
@@ -54,8 +58,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     generateHTML: function () {
         var div = QRCode.generateHTML(this.data);
+        var newDiv = document.createElement('div');
+        var newContent = document.createTextNode(this.data); 
+        newDiv.appendChild(newContent);
         this.clear();
         this.appendChild(div);
+        if(this.revealurl) {
+          this.appendChild(newDiv);  
+        } 
     },
     clear: function () {
         var i;
