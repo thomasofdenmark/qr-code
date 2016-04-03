@@ -28,7 +28,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       revealurl: {
         type: Boolean,
-        value: true
+        value: false
       }
     },
 
@@ -58,14 +58,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     generateHTML: function () {
         var div = QRCode.generateHTML(this.data);
-        var newDiv = document.createElement('div');
-        var newContent = document.createTextNode(this.data); 
-        newDiv.appendChild(newContent);
         this.clear();
         this.appendChild(div);
-        if(this.revealurl) {
-          this.appendChild(newDiv);  
-        } 
     },
     clear: function () {
         var i;
